@@ -1,2 +1,2 @@
 # Emotion-detector
-Emotion detector using Python, Deepface, OpenCV
+Emotion detector through webcam and age identifier of an image  using Python, Deepface, OpenCV
