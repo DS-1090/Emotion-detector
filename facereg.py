@@ -1,10 +1,24 @@
 import cv2
+import matplotlib as plt
 from deepface import DeepFace
 
 faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+img = cv2.imread("PATHOF IMAGE") 
 
+#age
+age_result=DeepFace.analyze(img, actions=['age']) 
+print(age_result)
 
+#image emotion
+predict = DeepFace.analyze(img, actions=['emotion'])
+print(predict)
+dominant_emotion = predict[0]['dominant_emotion']   
+cv2.putText(img, dominant_emotion, (0, 50), cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 0), 2, cv2.LINE_4)
+cv2.imshow('Image with Emotion', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
+#webcam emotion
 cap = cv2.VideoCapture(1)   
 if not cap.isOpened():
     raise IOError("Cant open webcam")
